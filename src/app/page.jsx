@@ -1,26 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-// import { useRouter } from 'next/navigation';
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { Badge } from "@/components/ui/badge";
-// import { ScrollArea } from "@/components/ui/scroll-area";
-// import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-// import { Calendar } from "@/components/ui/calendar";
 import * as echarts from 'echarts';
 import LoginPage from '@/components/LogInPage';
 import Sidebar from '@/components/SideBar';
 import TopNavigation from '@/components/TopNavigation';
 import Content from '@/components/Content';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome
-
-
-
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -33,6 +19,17 @@ const App = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [unreadNotifications, setUnreadNotifications] = useState(5);
   const [date, setDate] = useState(new Date());
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const closeSidebar = () => setIsSidebarOpen(false);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // safe to use window here
+      console.log(window.innerWidth);
+    }
+  }, []);
+  
 
 
   useEffect(() => {
@@ -264,13 +261,22 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white">
       <div className="flex h-screen overflow-hidden">
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+            onClick={closeSidebar}
+          />
+        )}
         <Sidebar 
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           handleLogout={handleLogout}
+          isOpen={isSidebarOpen}
+          onClose={closeSidebar}
         />
         <div className="flex-1 flex flex-col overflow-hidden">
           <TopNavigation 
+            toggleSidebar={toggleSidebar}
             currentPage={currentPage}
             currentTime={currentTime}
             showCalendar={showCalendar}

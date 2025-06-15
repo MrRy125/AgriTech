@@ -29,14 +29,16 @@ const MapPage = () => {
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="relative h-[600px] w-full rounded-b-md overflow-hidden">
+            <div className="relative h-[600px] w-full rounded-b-md overflow-hidden z-0">
               <ClientOnly>
                 <PolygonMap />
               </ClientOnly>
-              <div className="absolute inset-0 bg-[#121212]/20" />
+              {/* Optional: overlay, but allow map clicks */}
+              <div className="absolute inset-0 bg-[#121212]/20 pointer-events-none" />
             </div>
           </CardContent>
         </Card>
+
 
         {/* Right Column – Details */}
         <Card className="bg-[#1e1e1e] border-0 shadow-md">
@@ -46,27 +48,8 @@ const MapPage = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-white font-medium">Brgy. San Isidro, Tacloban City</h3>
+                <h3 className="text-white font-medium">Purok 2, Upper Jasaan</h3>
                 <Badge className="bg-green-900/50 text-green-300">5 Farmers</Badge>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-gray-400">Coordinates:</span>
-                  <span className="text-white ml-2">11.2543° N, 125.0041° E</span>
-                </div>
-                <div>
-                  <span className="text-gray-400">Total Area:</span>
-                  <span className="text-white ml-2">245 hectares</span>
-                </div>
-                <div>
-                  <span className="text-gray-400">Agricultural Land:</span>
-                  <span className="text-white ml-2">180 hectares</span>
-                </div>
-                <div>
-                  <span className="text-gray-400">Main Crops:</span>
-                  <span className="text-white ml-2">Rice, Corn, Coconut</span>
-                </div>
               </div>
 
               <div className="border-t border-[#333333] pt-4 mt-4">
@@ -77,7 +60,6 @@ const MapPage = () => {
                       <TableRow>
                         <TableHead className="text-gray-300 w-[80px]">RSBSA No.</TableHead>
                         <TableHead className="text-gray-300">Name</TableHead>
-                        <TableHead className="text-gray-300">Farm Size</TableHead>
                         <TableHead className="text-gray-300">Crops</TableHead>
                         <TableHead className="text-gray-300 text-right">Actions</TableHead>
                       </TableRow>
@@ -95,7 +77,6 @@ const MapPage = () => {
                           <TableCell>
                             <div className="font-medium text-gray-200">{farmer.name}</div>
                           </TableCell>
-                          <TableCell className="text-gray-400">{farmer.size}</TableCell>
                           <TableCell>
                             <div className="flex flex-wrap gap-1">
                               {farmer.crops.map((crop, index) => (

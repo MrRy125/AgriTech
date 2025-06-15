@@ -1,10 +1,16 @@
 import React from 'react';
 import { Avatar, AvatarFallback } from "components/ui/avatar"
 
-const Sidebar = ({ currentPage, setCurrentPage, handleLogout }) => {
+const Sidebar = ({ currentPage, setCurrentPage, handleLogout, isOpen, onClose }) => {
   return (
-    <div className="hidden md:flex w-64 flex-col bg-[#1a1a1a] border-r border-[#333333]">
-          <div className="flex items-center justify-center h-16 border-b border-[#333333] px-4">
+    <div className={`
+      bg-[#1a1a1a] w-64 z-50
+      transform transition-transform duration-300 ease-in-out
+      fixed inset-y-0 left-0
+      ${isOpen ? 'translate-x-0' : '-translate-x-full'}  // Mobile toggle
+      md:translate-x-0 md:static md:block               // Always visible on desktop
+    `}>
+      <div className="flex items-center justify-center h-16 border-b border-[#333333] px-4">
             <img 
               src="https://readdy.ai/api/search-image?query=Modern%20minimalist%20agriculture%20and%20fisheries%20logo%20design%20with%20a%20stylized%20leaf%20and%20fish%20icon%20in%20gradient%20green%20and%20blue%20colors%20on%20a%20dark%20background%2C%20professional%20and%20clean%20design%2C%20suitable%20for%20government%20agency&width=40&height=40&seq=14&orientation=squarish" 
               alt="AgriTech Logo" 
@@ -22,7 +28,6 @@ const Sidebar = ({ currentPage, setCurrentPage, handleLogout }) => {
                 { name: 'GIS Map', icon: 'fas fa-map-marked-alt', page: 'map' },
                 { name: 'Import', icon: 'fas fa-file-import', page: 'import' },
                 { name: 'Export', icon: 'fas fa-file-export', page: 'export' },
-                { name: 'Reports', icon: 'fas fa-chart-bar', page: 'reports' },
                 { name: 'History', icon: 'fas fa-history', page: 'history' }
               ].map((item) => (
                 <button
@@ -40,7 +45,7 @@ const Sidebar = ({ currentPage, setCurrentPage, handleLogout }) => {
               ))}
             </nav>
           </div>
-          <div className="p-4 border-t border-[#333333]">
+          <div className="p-4 border-t border-[#333333] ">
             <div className="flex items-center">
               <Avatar className="h-8 w-8 mr-2">
                 <AvatarFallback className="bg-gradient-to-br from-green-700 to-blue-700 text-white text-xs">

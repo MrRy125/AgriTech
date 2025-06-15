@@ -6,7 +6,6 @@ import RegisterPage from './RegisterPage';
 import MapPage from './MapPage';
 import ImportPage from './ImportPage';
 import ExportPage from './ExportPage';
-import ReportsPage from './ReportsPage';
 import HistoryPage from './HistoryPage';
 
 const Content = ({ currentPage }) => {
@@ -25,8 +24,6 @@ const Content = ({ currentPage }) => {
       return <ImportPage />;
     case 'export':
       return <ExportPage />;
-    case 'reports':
-      return <ReportsPage />;
     case 'history':
       return <HistoryPage />;
     default:

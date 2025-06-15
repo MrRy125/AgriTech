@@ -4,12 +4,13 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Calendar } from "components/ui/calendar";
 import { ScrollArea } from "components/ui/scroll-area";
 
-const TopNavigation = ({ currentPage, currentTime, showCalendar, setShowCalendar, date, setDate, showNotifications, setShowNotifications, unreadNotifications, handleLogout }) => {
+const TopNavigation = ({ toggleSidebar, currentPage, currentTime, showCalendar, setShowCalendar, date, setDate, showNotifications, setShowNotifications, unreadNotifications, handleLogout }) => {
+  
   return (
     <header className="h-16 bg-[#1a1a1a] border-b border-[#333333] flex items-center justify-between px-4">
             <div className="flex items-center md:hidden">
-              <button className="text-gray-400 hover:text-white">
-                <i className="fas fa-bars text-xl"></i>
+              <button onClick={toggleSidebar} className="md:hidden text-white text-xl">
+                <i className="fas fa-bars"></i>
               </button>
               <img 
                 src="https://readdy.ai/api/search-image?query=Modern%20minimalist%20agriculture%20and%20fisheries%20logo%20design%20with%20a%20stylized%20leaf%20and%20fish%20icon%20in%20gradient%20green%20and%20blue%20colors%20on%20a%20dark%20background%2C%20professional%20and%20clean%20design%2C%20suitable%20for%20government%20agency&width=32&height=32&seq=15&orientation=squarish" 

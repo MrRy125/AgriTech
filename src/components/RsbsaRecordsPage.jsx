@@ -62,11 +62,15 @@ const RsbsaRecordsPage = () => {
                       <TableCell className="text-gray-400">{record.date}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
+                          
                           <Button variant="outline" size="sm" className="h-8 border-[#444444] bg-transparent hover:bg-[#333333] text-gray-300 !rounded-button whitespace-nowrap">
                             <i className="fas fa-eye mr-1 text-xs"></i> View
                           </Button>
                           <Button variant="outline" size="sm" className="h-8 border-[#444444] bg-transparent hover:bg-[#333333] text-gray-300 !rounded-button whitespace-nowrap">
                             <i className="fas fa-edit mr-1 text-xs"></i> Edit
+                          </Button>
+                          <Button variant="outline" size="sm" className="h-8 border-[#444444] bg-transparent hover:bg-[#333333] text-gray-300 !rounded-button whitespace-nowrap">
+                          <i className="fas fa-trash text-xs"></i> Delete
                           </Button>
                           <Button variant="outline" size="sm" className="h-8 border-[#444444] bg-transparent hover:bg-[#333333] text-gray-300 !rounded-button whitespace-nowrap">
                             <i className="fas fa-map-marker-alt mr-1 text-xs"></i> Location
